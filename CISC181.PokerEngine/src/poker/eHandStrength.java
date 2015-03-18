@@ -3,6 +3,8 @@ package poker;
 public enum eHandStrength {
 
 	NaturalRoyalFlush(100),
+	JokerRoyalFlush(98),
+	FiveOfAKind(93),
 	StraightFlush(90),
 	FourOfAKind(80),
 	FullHouse(70),
