@@ -28,6 +28,16 @@ public class Deck {
 		
 	}
 
+	public Deck(int jokers){
+		Deck deck = new Deck();
+		for (int i = 0; i < jokers;i++){
+			Card jokerCard = new Card(eSuit.JOKER,eRank.JOKER);
+			deck.cards.add(jokerCard);
+		}
+		cards = deck.cards;
+		Collections.shuffle(this.cards);
+	}
+	
 	public Card drawFromDeck() {
 		// Removes the first card from the deck and return the card
 		Card FirstCard = cards.get(0);
