@@ -19,6 +19,9 @@ public class Hand
 	private boolean			Ace;
 	private int				NumJoker;
 	private boolean			Joker;
+	private boolean			Wild;
+
+	
 
 	public Hand()
 	{
@@ -31,17 +34,15 @@ public class Hand
 		Card card1 = new Card(eSuit.JOKER, eRank.JOKER);
 		Card card2 = new Card(eSuit.CLUBS, eRank.QUEEN);
 		Card card3 = new Card(eSuit.CLUBS, eRank.TEN);
-		Card card4 = new Card(eSuit.CLUBS	, eRank.JACK);
+		Card card4 = new Card(eSuit.CLUBS, eRank.JACK);
 		Card card5 = new Card(eSuit.CLUBS, eRank.KING);
 		Hand hand1 = new Hand(card1, card2, card3, card4, card5);
-		ArrayList<Hand> jokers = hand1.add52();
-			Hand.EvalJokerHand(jokers);
-			Hand hand2 = Hand.bestHand(jokers);
+		hand1.EvalHand();
 			for (int p = 0; p < 5; p++) {
-				System.out.println(hand2.CardsInHand.get(p).getRank());
-				System.out.println(hand2.CardsInHand.get(p).getSuit());
+				System.out.println(hand1.CardsInHand.get(p).getRank());
+				System.out.println(hand1.CardsInHand.get(p).getSuit());
 			}
-			System.out.println(hand2.getHandStrength());
+			System.out.println(hand1.getHandStrength());
 		}
 
 	private Hand(Card card1, Card card2, Card card3, Card card4, Card card5)
@@ -107,8 +108,20 @@ public class Hand
 			}
 		}
 	}
+	public boolean getJoker(){
+		return Joker;
+	}
 	public void setJoker(){
 		Joker = true;
+	}
+	public boolean isWild()
+	{
+		return Wild;
+	}
+
+	public void setWild(boolean wild)
+	{
+		Wild = wild;
 	}
 	
 	public ArrayList<Hand> add52()
@@ -181,7 +194,6 @@ public class Hand
 			ArrayList<Hand> explodedHand = add52();
 			EvalJokerHand(explodedHand);
 			CardsInHand = bestHand(explodedHand).getCards();
-			return;
 		}
 
 		// Ace Evaluation
